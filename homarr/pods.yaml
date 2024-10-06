@@ -1,0 +1,173 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-10-06T23:51:23Z"
+  generateName: homarr-5474d8f6bf-
+  labels:
+    app.kubernetes.io/instance: homarr
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: homarr
+    app.kubernetes.io/version: 0.15.4
+    helm.sh/chart: homarr-1.2.6
+    pod-template-hash: 5474d8f6bf
+  name: homarr-5474d8f6bf-zfxp2
+  namespace: homarr
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: homarr-5474d8f6bf
+    uid: e2d99ec2-e535-469d-b86e-6e4233216b19
+  resourceVersion: "76683"
+  uid: d33a8565-150e-4a6e-859b-908e5b26da57
+spec:
+  containers:
+  - env:
+    - name: AUTH_LDAP_ADMIN_GROUP
+      value: admin
+    - name: AUTH_LDAP_BASE
+    - name: AUTH_LDAP_BIND_DN
+    - name: AUTH_LDAP_GROUP_CLASS
+      value: groupOfUniqueNames
+    - name: AUTH_LDAP_GROUP_MEMBER_ATTRIBUTE
+      value: member
+    - name: AUTH_LDAP_GROUP_MEMBER_USER_ATTRIBUTE
+      value: dn
+    - name: AUTH_LDAP_OWNER_GROUP
+      value: admin
+    - name: AUTH_LDAP_SEARCH_SCOPE
+      value: base
+    - name: AUTH_LDAP_URI
+    - name: AUTH_LDAP_USERNAME_ATTRIBUTE
+      value: uid
+    - name: AUTH_OIDC_ADMIN_GROUP
+      value: admin
+    - name: AUTH_OIDC_CLIENT_NAME
+      value: OIDC
+    - name: AUTH_OIDC_OWNER_GROUP
+      value: admin
+    - name: AUTH_OIDC_SCOPE_OVERWRITE
+      value: openid email profile groups
+    - name: AUTH_OIDC_URI
+    - name: AUTH_PROVIDER
+      value: credentials
+    - name: DEFAULT_COLOR_SCHEME
+      value: dark
+    - name: TZ
+      value: Europe/Paris
+    image: ghcr.io/ajnart/homarr:0.15.4
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: http
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: homarr
+    ports:
+    - containerPort: 7575
+      name: http
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: http
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    securityContext: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-gq4jg
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: lima-rancher-desktop
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-gq4jg
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-06T23:51:24Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-06T23:51:23Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-06T23:51:35Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-06T23:51:35Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-10-06T23:51:23Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://6f9cb93a0328d1e9015f2b8f1920b4ee695e8bbcfbe36dff845c35312bf136ff
+    image: ghcr.io/ajnart/homarr:0.15.4
+    imageID: docker-pullable://ghcr.io/ajnart/homarr@sha256:c13f04c95fdfbdb710375301cc45783a4c239eaedc96258e2a026feead213f99
+    lastState: {}
+    name: homarr
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-10-06T23:51:24Z"
+  hostIP: 192.168.5.15
+  hostIPs:
+  - ip: 192.168.5.15
+  phase: Running
+  podIP: 10.42.0.120
+  podIPs:
+  - ip: 10.42.0.120
+  qosClass: BestEffort
+  startTime: "2024-10-06T23:51:23Z"

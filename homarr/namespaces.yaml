@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2024-10-06T23:51:23Z"
+  labels:
+    kubernetes.io/metadata.name: homarr
+    name: homarr
+  name: homarr
+  resourceVersion: "76648"
+  uid: 693ee5ab-6306-477e-919b-0195cdac589f
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active
